@@ -1,0 +1,10 @@
+/derby.log
+/database
+node_modules
+bower_components
+.tmp
+dist
+.idea/
+*.iml
+test-output
+/target/
