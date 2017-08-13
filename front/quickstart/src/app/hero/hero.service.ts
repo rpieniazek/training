@@ -6,7 +6,7 @@ import {Hero} from "./hero";
 
 @Injectable()
 export class HeroService {
-  private apiUrl = 'api/heroes';
+  private apiUrl = 'api/heroes/';
 
   constructor(private http: Http) {
 
@@ -20,9 +20,17 @@ export class HeroService {
   }
 
   getHero(id: number): Promise<Hero> {
-    return this.http.get(this.apiUrl + '/' + id)
+    return this.http.get(this.apiUrl + id)
       .toPromise()
       .then(response => response.json().data as Hero)
+      .catch(this.handleError);
+  }
+
+  update(hero: Hero): Promise<Hero> {
+    return this.http
+      .put(this.apiUrl + hero.id, JSON.stringify(hero))
+      .toPromise()
+      .then(() => hero)
       .catch(this.handleError);
   }
 
