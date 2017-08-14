@@ -11,3 +11,9 @@
   </h2>
   <button (click)="goToDetails()"> View details</button>
 </div>
+<div>
+  <label>Hero name:</label> <input #heroName />
+  <button (click)="onSaveHero(heroName.value); heroName.value=''">
+    Add
+  </button>
+</div>

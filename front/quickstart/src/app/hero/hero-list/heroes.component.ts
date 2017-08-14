@@ -32,4 +32,16 @@ export class HeroesComponent implements OnInit {
   goToDetails() {
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
+
+  onSaveHero(heroName: string) {
+    heroName = heroName.trim();
+    if (!heroName) {
+      return;
+    }
+
+    this.heroService.save(heroName).then(value => {
+      this.heroes.push(value);
+      this.selectedHero = null;
+    });
+  }
 }

@@ -34,6 +34,14 @@ export class HeroService {
       .catch(this.handleError);
   }
 
+  save(heroName: string): Promise<Hero> {
+    return this.http
+      .post(this.apiUrl, JSON.stringify({name: heroName}))
+      .toPromise()
+      .then(res => res.json().data as Hero)
+      .catch(this.handleError);
+  }
+
   handleError(error: any) {
     console.error(error);
     return Promise.reject(error.message || error);
