@@ -1,26 +1,11 @@
 package org.rafalpieniazek.books.entity;
 
+import org.rafalpieniazek.books.common.Genre;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Version;
-
-import org.rafalpieniazek.books.common.Genre;
 
 @Entity
 public class Book implements Serializable {
@@ -36,7 +21,7 @@ public class Book implements Serializable {
     @Column(nullable = false, length = 50)
     private String title;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "BOOK_AUTHOR", joinColumns = {
             @JoinColumn(name = "BOOK_ID", nullable = false, updatable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false)})
